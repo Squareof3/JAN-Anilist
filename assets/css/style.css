@@ -1,0 +1,8 @@
+.parallax {
+    background-image: url("../images/Trigun.jpg");
+    min-height: 400px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+}
