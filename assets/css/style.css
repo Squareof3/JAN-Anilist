@@ -6,3 +6,16 @@
     background-repeat: repeat;
     background-size: cover;
 }
+
+.parallax_2 {
+    background-image: url("../images/Spike.jpg");
+    min-height: 400px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body {
+    background: black;
+}
