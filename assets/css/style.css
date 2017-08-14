@@ -18,13 +18,30 @@
 
 .parallax_3 {
     background-image: url("../images/Samurai.jpg");
-    min-height: 500px;
+    min-height: 360px;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
+.parallax_4 {
+    background-image: url("../images/Bang.jpg");
+    min-height: 400px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax_5 {
+    background-image: url("../images/Kake.jpg");
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 body {
     background: black;
 }
