@@ -172,25 +172,35 @@
             $("#e-mail").val("");
             $("#pass-word-2").val("");
 
+            window.open("index.html")
+
         });
 
         
         $("#signIn").on("click",function(){
             event.preventDefault();
 
-            userName = $("#user-name").val().trim();
-            lpassWord = $("#pass-word").val().trim();
+           userName = $("#user-name").val().trim();
+            passWord = $("#pass-word").val().trim();
 
-            if(userName===name&&passWord===lpassWord){
-                window.open("index.html")
+           database.ref("/user").orderByChild("userName").equalTo(userName).once("value", function(snapshot) {
 
-            }
+             var snapShot = snapshot.val();
+              var key = Object.keys(snapShot)[0];
+              var x = snapShot[key];
 
-            else{
-            $("#myModal").modal("toggle")
-            }
-            
-        })
+             if(userName == x.userName && passWord == x.passWord) {
+                console.log("Worked!");
+                window.location = "index.html";
+              }
+              else {
+                $("#myModal").modal("toggle");
+              }
+
+           });
+
+       });//Sign In On-Click
+
     </script>
   
 

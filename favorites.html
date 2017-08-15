@@ -72,9 +72,9 @@
 
                <div class="parallax_5"></div>
                <div class="jumbotron2">
-                  <div class="embed-responsive embed-responsive-16by9">
+                  <div class="embed-responsive embed-responsive-16by9" id="hi">
 
-                      <iframe width="560" height="315" src="https://www.youtube.com/embed/cTlHQiRNVl0" frameborder="0" allowfullscreen></iframe>
+                      
 
                     </div>
                </div>
@@ -145,8 +145,16 @@
               },
               dataType: 'jsonp'
             }).done(function(response) {
-              console.log(response)
-              //$(".jumbotron2").append(response);
+              var vId=response.items[0].id.videoId
+              console.log(vId)
+              console.log(response);
+              var vp = $("<iframe>");
+              vp.attr("width",560);
+              vp.attr("height",315);
+              vp.attr("src","https://www.youtube.com/embed/"+vId); 
+              vp.attr("frameborder",0);
+             
+              $(".jumbotron2").append(vp);
             });
         </script>
 
