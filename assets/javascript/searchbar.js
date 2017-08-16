@@ -1,9 +1,10 @@
 	var url = "https://anilist.co/api/auth/access_token";
 
       $("#search").on("click",function(event){
-        window.location("clone-faves.html")  
+        event.preventDefault();
+        window.location= "clone-faves.html" 
         var search = $("#search-input").val();
-      	event.preventDefault();
+      	
       	console.log(search);
 	      
 	      $.ajax({
@@ -39,7 +40,7 @@
             searchDiv.append(searchLink);
             $("#search-result").append(searchDiv);
 
-            $("#search").val("");
+            $("#search-input").val("");
 						}
 	          
 	          console.log(res);

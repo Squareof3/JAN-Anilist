@@ -180,6 +180,20 @@
            });
 
        });//Sign In On-Click
+      
+       var url = "https://anilist.co/api/auth/access_token";
+
+      $("#search").on("click",function(event){
+            event.preventDefault();
+            window.location= "clone-faves.html" 
+            var search = $("#search-input").val();
+            localStorage.setItem("key",search)
+            console.log(search);
+            $("#search-input").val("")
+	      
+        })
+
+	     
 
     </script>
   

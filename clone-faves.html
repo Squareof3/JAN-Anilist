@@ -33,9 +33,9 @@
                 <li><a href="favorites.html">Favorites</a></li>
               <form class="navbar-form navbar-left">
                  <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Search">
+                  <input type="text" class="form-control" placeholder="Search" id="search-input">
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-default" id="search">Search</button>
               </form>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
@@ -53,3 +53,59 @@
     <div class="parallax_4"></div>
 
   </div>
+  <script>
+       var search = localStorage.getItem("key")
+       var url = "https://anilist.co/api/auth/access_token";
+          $.ajax({
+                method: "POST",
+                url: url,
+                data: {
+                  grant_type    : "client_credentials",
+                  client_id     :  "doliveira-ltvix",
+                  client_secret :  "0xKw6JT9yVCuTU8D2Ff0hV6ecNMD"
+                }
+            }).done( function(response) {
+      
+                var accessToken = response.access_token;
+                console.log(accessToken);
+      
+                var url2 = "https://anilist.co/api/anime/search/"+search+"?access_token=" + accessToken;
+                $.ajax({
+                  method: "GET",
+                  url: url2
+                }).done( function(res) {
+                  for (var i = 0; i < res.length; i++) {
+						      	var search1 = res[i];
+							      console.log(res[i])
+                            
+                         
+	        
+                  var searchDiv = $("<div>")
+							    var searchLink= $("<a>");
+
+						 
+                  searchLink.attr("href","favorites.html");
+                  searchLink.text(search1.title_english);
+                  searchLink.attr("value",search1.title_english);
+                
+                    
+                  searchDiv.append(searchLink);
+                  $("#search-results").append(searchDiv);
+
+                  
+                  }
+                  
+                  
+                })
+                });
+
+                $("#search").on("click",function(event){
+            event.preventDefault();
+            window.location= "clone-faves.html" 
+            var search = $("#search-input").val();
+            localStorage.setItem("key",search)
+            console.log(search);
+            $("#search-input").val("")
+	      
+        })
+  </script>
