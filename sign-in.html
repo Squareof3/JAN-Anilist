@@ -6,6 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="assets/javascript/searchbar.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
@@ -26,40 +33,14 @@
              <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="favorites.html">Faves <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Link</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                   <ul class="dropdown-menu">
-                     <li><a href="#">Action</a></li>
-                     <li><a href="#">Another action</a></li>
-                     <li><a href="#">Something else here</a></li>
-                     <li role="separator" class="divider"></li>
-                     <li><a href="#">Separated link</a></li>
-                     <li role="separator" class="divider"></li>
-                     <li><a href="#">One more separated link</a></li>
-                   </ul>
-                </li>
-              </ul>
+                <li class="active"><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
+                <li><a href="favorites.html">Favorites</a></li>
               <form class="navbar-form navbar-left">
-                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Search">
+                 <div class="form-group" >
+                  <input type="text" class="form-control" placeholder="Search" id="search-input">
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-default" id="search">Search</button>
               </form>
-              <ul class="nav navbar-nav navbar-right">
-                 <li><a href="#">Link</a></li>
-                <li class="dropdown">
-                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                   <ul class="dropdown-menu">
-                     <li><a href="#">Action</a></li>
-                     <li><a href="#">Another action</a></li>
-                     <li><a href="#">Something else here</a></li>
-                     <li role="separator" class="divider"></li>
-                     <li><a href="#">Separated link</a></li>
-                   </ul>
-                 </li>
-              </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
         </nav>
@@ -67,17 +48,40 @@
 
     <div class="jumbotron">
         <h1>Sign In</h1>
-        <form>
+
+        <!-- Modal -->
+        <div class="modal fade" tabindex="-1" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Error</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Incorrect Username/Password
+                      </p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+
+        <form action="" id="registration-form">
             <div class="form-group">
                 <label for="user-name">Username</label>
-                <input class="form-control" id="user-name" type="text">
+                <input class="form-control" id="user-name" type="text" name="name" minlength="5" required>
             </div>
 
             <div class="form-group">
                 <label for="pass-word">Password</label>
-                <input class="form-control" id="pass-word" type="password">
+                <input class="form-control" id="pass-word" type="password" minlength="5" required>
             </div>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+            <button type="button" class="btn btn-primary" id="signIn">Submit</button>
         </form>
     </div>
 
@@ -85,22 +89,22 @@
  
     <div class="jumbotron">
         <h1>Sign Up</h1>
-        <form>
+        <form form action="" id="signup-form">
             <div class="form-group">
                 <label for="e-mail">E-mail</label>
-                <input class="form-control" id="e-mail" type="text">
+                <input class="form-control" id="e-mail"  type="email" name="email" required>
             </div>
 
             <div class="form-group">
                 <label for="user-name-2">Username: Pick Something Cool</label>
-                <input class="form-control" id="user-name-2" type="text">
+                <input class="form-control" id="user-name-2" type="text"  name="name" minlength="5" required>
             </div>
 
             <div class="form-group">
                 <label for="pass-word-2">Password</label>
-                <input class="form-control" id="pass-word-2" type="password">
+                <input class="form-control" id="pass-word-2" type="password" minlength="5" required>
             </div>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+            <button type="button" class="btn btn-primary" id="register">Submit</button>
         </form>
        
     </div>
@@ -108,4 +112,75 @@
     <div class="parallax_4"></div>
 
   </div>
+  <script>
+      $("#registration-form").validate();
+      $("#signup-form").validate();
+        var config = {
+            apiKey: "AIzaSyAz68WuYi-Q1okJbyGbieFjiOFxfQ-XuLg",
+            authDomain: "jan-project-c200a.firebaseapp.com",
+            databaseURL: "https://jan-project-c200a.firebaseio.com",
+            projectId: "jan-project-c200a",
+            storageBucket: "",
+            messagingSenderId: "285584940505"
+        };
+
+        firebase.initializeApp(config);
+
+        var database = firebase.database()
+        var name = "";
+        var eMail = "";
+        var passWord ="";
+        var userName ="";
+        var lpassWord ="";
+
+        $("#register").on("click",function(){
+                  
+            event.preventDefault();
+
+            name = $("#user-name-2").val().trim();
+            eMail= $("#e-mail").val().trim();
+            passWord = $("#pass-word-2").val().trim();
+
+            database.ref("/user").push({
+                userName: name,
+                email: eMail,
+                passWord: passWord,
+                
+            });
+
+            $("#user-name-2").val("");
+            $("#e-mail").val("");
+            $("#pass-word-2").val("");
+
+            window.location("index.html")
+
+        });
+
+        
+        $("#signIn").on("click",function(){
+            event.preventDefault();
+
+           userName = $("#user-name").val().trim();
+            passWord = $("#pass-word").val().trim();
+
+           database.ref("/user").orderByChild("userName").equalTo(userName).once("value", function(snapshot) {
+
+             var snapShot = snapshot.val();
+              var key = Object.keys(snapShot)[0];
+              var x = snapShot[key];
+
+             if(userName == x.userName && passWord == x.passWord) {
+                console.log("Worked!");
+                window.location = "index.html";
+              }
+              else {
+                $("#myModal").modal("toggle");
+              }
+
+           });
+
+       });//Sign In On-Click
+
+    </script>
+  
 
