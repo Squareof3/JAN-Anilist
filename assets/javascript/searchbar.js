@@ -1,7 +1,7 @@
 	var url = "https://anilist.co/api/auth/access_token";
 
       $("#search").on("click",function(event){
-        window.location(clone-favorites.html)  
+        window.location("clone-faves.html")  
         var search = $("#search-input").val();
       	event.preventDefault();
       	console.log(search);
